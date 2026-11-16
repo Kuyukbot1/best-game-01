@@ -1,0 +1,68 @@
+/* Lumen Drift — page shell. The game itself is drawn on the canvas;
+   this only centres it on a dark page and keeps it readable at any size. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #03051a;
+  color: #eaf6ff;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+#game {
+  display: block;
+  width: min(1280px, 100%);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(120, 200, 255, 0.25),
+    0 18px 60px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(53, 240, 255, 0.08);
+  background: #04061a;
+  cursor: crosshair;
+}
+
+.hint {
+  margin: 0;
+  font-size: 14px;
+  color: #8fa8c8;
+  text-align: center;
+}
+
+/* Screenshot mode (?shot=…): the canvas alone fills the 1280x720 viewport,
+   so a capture is the game and nothing else. */
+body.shot {
+  overflow: hidden;
+}
+
+body.shot .stage {
+  padding: 0;
+  gap: 0;
+}
+
+body.shot .hint {
+  display: none;
+}
+
+body.shot #game {
+  width: 1280px;
+  height: 720px;
+  border-radius: 0;
+  box-shadow: none;
+}
